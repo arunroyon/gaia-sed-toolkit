@@ -161,7 +161,33 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full contributor workflow and [
 
 ## Citation and attribution
 
-If this repository contributes to published work, cite the software repository and the astronomical data products it depends on, including Gaia DR3, GaiaXPy, Astroquery, Astropy, and the BT-NextGen model grid.
+The SED workflow in this repository follows the methodology used in:
+
+- Shridharan, B., Mathew, B., Bhattacharyya, S., Robin, T., Arun, R., Kartha, S. S., Manoj, P., Nidhi, S., Maheshwar, G., Paul, K. T., Narang, M., and Himanshu, T. (2022), *Emission line star catalogues post-Gaia DR3. A validation of Gaia DR3 data using the LAMOST OBA emission catalogue*, A&A, 668, A156. [https://doi.org/10.1051/0004-6361/202244353](https://doi.org/10.1051/0004-6361/202244353)
+
+If this repository contributes to published work, please cite both the software repository and the paper above, along with the astronomical data products it depends on, including Gaia DR3, GaiaXPy, Astroquery, Astropy, and the BT-NextGen model grid.
+
+BibTeX:
+
+```bibtex
+@ARTICLE{2022A&A...668A.156S,
+       author = {{Shridharan}, B. and {Mathew}, B. and {Bhattacharyya}, S. and {Robin}, T. and {Arun}, R. and {Kartha}, S.~S. and {Manoj}, P. and {Nidhi}, S. and {Maheshwar}, G. and {Paul}, K.~T. and {Narang}, M. and {Himanshu}, T.},
+        title = "{Emission line star catalogues post-Gaia DR3. A validation of Gaia DR3 data using the LAMOST OBA emission catalogue}",
+      journal = {\aap},
+     keywords = {stars: emission-line, Be, catalogs, stars: variables: T Tauri, Herbig Ae/Be, methods: data analysis, techniques: spectroscopic, Astrophysics - Astrophysics of Galaxies, Astrophysics - Solar and Stellar Astrophysics},
+         year = 2022,
+        month = dec,
+       volume = {668},
+          eid = {A156},
+        pages = {A156},
+          doi = {10.1051/0004-6361/202244353},
+archivePrefix = {arXiv},
+       eprint = {2209.13221},
+ primaryClass = {astro-ph.GA},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2022A&A...668A.156S},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+```
 
 ## License
 
