@@ -31,6 +31,8 @@ env/
 outputs/temp/
 outputs/fig/
 outputs/images/
+output_spectra.fits
+output_synthetic_photometry.fits
 
 # Large external model assets
 data/models/bt-nextgen-agss2009/

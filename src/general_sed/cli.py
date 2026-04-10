@@ -13,7 +13,7 @@ from .resources import get_model_photometry_dir, get_model_spectra_dir, get_repo
 def build_parser() -> argparse.ArgumentParser:
     """Create the top-level CLI parser."""
 
-    parser = argparse.ArgumentParser(prog="general-sed", description="Gaia DR3 SED tools.")
+    parser = argparse.ArgumentParser(prog="gaia-sed-toolkit", description="Gaia DR3 SED tools.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     run = subparsers.add_parser("run-source", help="Run the full Gaia DR3 single-source SED workflow.")
