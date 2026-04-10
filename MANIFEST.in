@@ -1,0 +1,6 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CONTRIBUTING.md
+recursive-include src/general_sed/data/model_photometry *.dat
+recursive-include src/general_sed/data/examples *.csv

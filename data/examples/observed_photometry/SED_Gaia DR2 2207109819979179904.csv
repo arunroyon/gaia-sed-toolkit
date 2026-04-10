@@ -1,0 +1,2 @@
+Name,RA,DEC,Av,Dist,Gmag,e_Gmag,BPmag,e_BPmag,RPmag,e_RPmag,Jmag,e_Jmag,Hmag,e_Hmag,Ksmag,e_Ksmag,umag,e_umag,gmag,e_gmag,rmag,e_rmag,imag,e_imag,zmag,e_zmag
+Gaia DR2 2207109819979179904,343.26780229887,62.13840366246,2.24,702.371270719854,19.055,0.0048,20.2368,0.0777,17.4902,0.0184,14.977,0.046,13.952,0.045,13.392,0.042,22.07,0.329,21.343,0.077,19.855,0.026,18.252,0.01,17.16,0.013

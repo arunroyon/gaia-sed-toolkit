@@ -1,0 +1,47 @@
+# BT-NextGen (AGSS2009)
+# teff = 17500 K (value for the effective temperature for the model. Temperatures are given in K)
+# logg = 4.5 log(cm/s2) (value for Log(G) for the model.)
+# meta = 0  (value for the Metallicity for the model.)
+# alpha = 0  (Alpha enhancement)
+#
+#                      Filter	#  Wavelength in Angstrom	#  Flux in erg/cm2/s/A	
+#############################	#########################	######################	
+                2MASS/2MASS.H	                    16620	       3321025.3517007	
+                2MASS/2MASS.J	                    12350	       9811915.3103104	
+               2MASS/2MASS.Ks	                    21590	       1205127.2605661	
+                GAIA/GAIA2r.G	          5836.3100587476	       118365062.15318	
+              GAIA/GAIA2r.Gbp	          5020.9202378313	       216177610.07471	
+              GAIA/GAIA2r.Grp	          7588.8315754264	       51718262.050583	
+            Generic/Cousins.I	          7829.1725903466	        47287963.88754	
+            Generic/Cousins.R	          6357.9580280521	       98133619.088786	
+            Generic/Johnson.B	            4378.11999165	       346218442.15933	
+            Generic/Johnson.R	            6695.58446503	       80411399.469448	
+            Generic/Johnson.U	            3570.64730961	        431960418.1632	
+            Generic/Johnson.V	            5466.11399596	       167568446.36964	
+             PAN-STARRS/PS1.g	           4810.883141308	       256263906.00446	
+             PAN-STARRS/PS1.i	          7503.6764467665	       55281776.673575	
+             PAN-STARRS/PS1.r	          6156.3564291844	       110120536.07221	
+             PAN-STARRS/PS1.y	          9613.4544956085	       24068333.397681	
+             PAN-STARRS/PS1.z	          8668.5619290591	       32978347.822553	
+              Paranal/NACO.Ks	            21240.5963451	       1260954.7066849	
+              Paranal/VISTA.H	          16348.188840504	        3344631.174012	
+              Paranal/VISTA.J	          12480.995875768	       9283712.1405195	
+             Paranal/VISTA.Ks	          21435.460615367	       1223448.7069973	
+                 SLOAN/SDSS.g	          4640.4198339016	       288249116.61304	
+     SLOAN/SDSS.gprime_filter	          4724.6036159648	       271521199.25335	
+                 SLOAN/SDSS.i	          7439.4904529922	       56953048.698352	
+     SLOAN/SDSS.iprime_filter	          7673.0341411813	       50595448.456757	
+                 SLOAN/SDSS.r	          6122.3296283695	       112540281.24843	
+     SLOAN/SDSS.rprime_filter	          6202.5780752063	       107282200.28729	
+                 SLOAN/SDSS.u	          3594.9304222451	       418738183.30439	
+     SLOAN/SDSS.uprime_filter	          3542.1866034125	       428918360.78283	
+                 SLOAN/SDSS.z	          8897.0610456181	       30444949.032921	
+     SLOAN/SDSS.zprime_filter	          10506.539849677	       16405322.204408	
+              Spitzer/IRAC.I1	             35075.111436	        177937.2398183	
+              Spitzer/IRAC.I2	            44365.7786851	       71159.455725409	
+              Spitzer/IRAC.I3	            56281.0168686	       27978.887688498	
+              Spitzer/IRAC.I4	            75891.5860201	       8425.7159820044	
+                 WISE/WISE.W1	                    33526	        217913.8419415	
+                 WISE/WISE.W2	                    46028	       63340.236815796	
+                 WISE/WISE.W3	                   115608	       1747.4934422215	
+                 WISE/WISE.W4	                   220883	       140.18016461568	
