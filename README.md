@@ -1,12 +1,16 @@
 # gaia-sed-toolkit
 
-`gaia-sed-toolkit` packages the existing Gaia DR3 single-source SED workflow in this repository into a reusable Python library and CLI. It preserves the current scientific flow: Gaia XP download, observed photometry lookup, Gaia synthetic photometry generation, BT-NextGen model selection, scaling, and publication-style plotting.
+[![Tests](https://github.com/arunroyon/gaia-sed-toolkit/actions/workflows/tests.yml/badge.svg)](https://github.com/arunroyon/gaia-sed-toolkit/actions/workflows/tests.yml)
+[![Lint](https://github.com/arunroyon/gaia-sed-toolkit/actions/workflows/lint.yml/badge.svg)](https://github.com/arunroyon/gaia-sed-toolkit/actions/workflows/lint.yml)
+[![Build](https://github.com/arunroyon/gaia-sed-toolkit/actions/workflows/build.yml/badge.svg)](https://github.com/arunroyon/gaia-sed-toolkit/actions/workflows/build.yml)
+
+`gaia-sed-toolkit` packages the Gaia DR3 single-source SED workflow in this repository into a reusable Python library and CLI. It supports Gaia XP download, observed photometry lookup, Gaia synthetic photometry generation, BT-NextGen model matching, spectrum scaling, and publication-style plotting.
 
 The repository is organized for both research use and open-source distribution. Library code lives in `src/general_sed`, legacy material is retained in `legacy/`, example assets are separated from generated outputs, and the package is installable with standard Python packaging tools.
 
 ## Features
 
-- Installable with `pip install .` and `pip install git+<repo_url>`
+- Installable with `pip install .` and `pip install "git+https://github.com/arunroyon/gaia-sed-toolkit.git"`
 - Clean import API for Python users
 - CLI for local photometry fitting and full Gaia DR3 single-source runs
 - Bundled BT-NextGen synthetic photometry grid for installable offline model matching
@@ -24,7 +28,7 @@ pip install .
 ### From GitHub
 
 ```bash
-pip install "git+<repo_url>"
+pip install "git+https://github.com/arunroyon/gaia-sed-toolkit.git"
 ```
 
 ### Development install
@@ -33,49 +37,47 @@ pip install "git+<repo_url>"
 pip install -e ".[dev]"
 ```
 
-## Data requirements
-
-The package bundles the lightweight BT-NextGen synthetic photometry grid used for model matching.
-
-The full BT-NextGen spectral grid is much larger and is intentionally kept as external repository data rather than bundled into the wheel. The package looks for full spectra in this order:
-
-1. `model_spec_dir=` passed to the API or CLI
-2. `GENERAL_SED_MODEL_SPEC_DIR` environment variable
-3. Repository-local `data/models/bt-nextgen-agss2009/`
-
-This means:
-
-- `pip install .` inside this repository works with the local model directory already present here
-- `pip install git+...` or a future PyPI install can still do photometric model matching out of the box
-- the full Gaia XP plus BT-NextGen spectrum plotting workflow still needs the external spectral grid
-
 ## Quickstart
 
-### Python API
+Copy-paste example:
 
 ```python
 from pathlib import Path
 
-from general_sed import run_single_source_sed
-
-result = run_single_source_sed(
-    source_id=5788625396770225152,
-    a_v=0.0,
-    xp_dir=Path("data/examples/xp_continuous_fits"),
-    output_dir=Path("outputs/fig"),
-    temp_dir=Path("outputs/temp"),
-)
-
-print(result.to_dict())
-```
-
-### Local photometry fitting
-
-```python
 from general_sed import fit_photometry
 
-fit = fit_photometry("data/examples/temp_sed_products/synthetic_5788625396770225152.csv")
-print(fit["teff"], fit["logg"])
+fit = fit_photometry(
+    Path("data/examples/temp_sed_products/synthetic_5788625396770225152.csv")
+)
+
+print(fit["teff"], fit["logg"], fit["norm_band"])
+```
+
+## After install
+
+### Works immediately
+
+- Import the package from Python
+- Run offline BT-NextGen photometric fitting with the bundled synthetic-photometry grid
+- Use the CLI for `fit-photometry` and `show-paths`
+
+### Requires external full BT-NextGen spectra
+
+- Full SED plotting with BT-NextGen spectra
+- The online `run-source` workflow when you want the model spectrum plotted together with Gaia XP and photometry
+
+### Where to place or configure full spectral files
+
+The package looks for the BT-NextGen full spectral grid in this order:
+
+1. `model_spec_dir=` passed to the API or CLI
+2. `GENERAL_SED_MODEL_SPEC_DIR` environment variable
+3. `data/models/bt-nextgen-agss2009/` inside a repository checkout
+
+Recommended repository-local layout:
+
+```text
+data/models/bt-nextgen-agss2009/
 ```
 
 ### CLI usage
@@ -83,21 +85,18 @@ print(fit["teff"], fit["logg"])
 Inspect available data paths:
 
 ```bash
-general-sed show-paths
 gaia-sed-toolkit show-paths
 ```
 
 Fit a local photometry file:
 
 ```bash
-general-sed fit-photometry data/examples/temp_sed_products/synthetic_5788625396770225152.csv
 gaia-sed-toolkit fit-photometry data/examples/temp_sed_products/synthetic_5788625396770225152.csv
 ```
 
 Run the full single-source pipeline:
 
 ```bash
-general-sed run-source 5788625396770225152 --av 0.0
 gaia-sed-toolkit run-source 5788625396770225152 --av 0.0
 ```
 
@@ -129,6 +128,10 @@ notebooks/                Original and exploratory notebooks
 legacy/                   Legacy pre-package script
 outputs/                  Generated figures and transient products
 ```
+
+Notebook example:
+
+- [`notebooks/test_case.ipynb`](notebooks/test_case.ipynb) runs the reference source `5788625396770225152` with `A_V = 0.0` and `norm_band = "zmag"`.
 
 ## Scientific notes
 

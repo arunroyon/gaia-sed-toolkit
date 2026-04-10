@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-import tempfile
-import zipfile
 import os
 import shutil
+import tempfile
+import zipfile
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -97,7 +97,10 @@ def download_gaia_xp_continuous(
             if not fits_candidates:
                 raise FileNotFoundError("No FITS file found inside Gaia datalink zip.")
 
-            chosen = next((path for path in fits_candidates if str(source_id) in path.name), fits_candidates[0])
+            chosen = next(
+                (path for path in fits_candidates if str(source_id) in path.name),
+                fits_candidates[0],
+            )
             shutil.move(str(chosen), str(target_file))
             if verbose:
                 print(f"Downloaded XP_CONTINUOUS to: {target_file}")

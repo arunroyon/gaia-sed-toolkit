@@ -197,7 +197,11 @@ def fit_model(
         data_spec = ascii.read(best_spec_file)
         spec_wave = np.array(data_spec.columns[0], dtype=float)
         spec_flux = np.array(data_spec.columns[1], dtype=float) * scale_factor
-        model_wave, model_flux = smooth_spectrum_to_resolution(spec_wave, spec_flux, resolving_power=model_resolution)
+        model_wave, model_flux = smooth_spectrum_to_resolution(
+            spec_wave,
+            spec_flux,
+            resolving_power=model_resolution,
+        )
 
     return {
         "model_wave": model_wave,

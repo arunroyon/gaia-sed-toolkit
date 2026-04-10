@@ -85,7 +85,12 @@ def get_model_photometry_dir(path: str | os.PathLike[str] | None = None) -> Path
 def get_packaged_model_photometry_dir() -> Path:
     """Return the bundled BT-NextGen synthetic photometry directory."""
 
-    resource = files("general_sed") / "data" / "model_photometry" / "bt-nextgen-agss2009_phot_1587193332.0893"
+    resource = (
+        files("general_sed")
+        / "data"
+        / "model_photometry"
+        / "bt-nextgen-agss2009_phot_1587193332.0893"
+    )
     with as_file(resource) as resource_path:
         return Path(resource_path)
 

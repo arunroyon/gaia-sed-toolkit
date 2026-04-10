@@ -7,7 +7,11 @@ import json
 from pathlib import Path
 
 from .pipeline import fit_photometry, run_single_source_sed
-from .resources import get_model_photometry_dir, get_model_spectra_dir, get_repo_model_spectra_dir
+from .resources import (
+    get_model_photometry_dir,
+    get_model_spectra_dir,
+    get_repo_model_spectra_dir,
+)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -16,7 +20,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="gaia-sed-toolkit", description="Gaia DR3 SED tools.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    run = subparsers.add_parser("run-source", help="Run the full Gaia DR3 single-source SED workflow.")
+    run = subparsers.add_parser(
+        "run-source",
+        help="Run the full Gaia DR3 single-source SED workflow.",
+    )
     run.add_argument("source_id", type=int, help="Gaia DR3 source ID")
     run.add_argument("--av", type=float, default=0.0, help="Visual extinction A_V")
     run.add_argument("--xp-dir", type=Path, default=Path("data/examples/xp_continuous_fits"))
@@ -30,8 +37,15 @@ def build_parser() -> argparse.ArgumentParser:
     run.add_argument("--force-model-teff", type=int, default=None)
     run.add_argument("--force-model-logg", type=float, default=None)
 
-    fit = subparsers.add_parser("fit-photometry", help="Fit a local photometry CSV against BT-NextGen models.")
-    fit.add_argument("photometry_csv", type=Path, help="Path to an observed or synthetic photometry CSV")
+    fit = subparsers.add_parser(
+        "fit-photometry",
+        help="Fit a local photometry CSV against BT-NextGen models.",
+    )
+    fit.add_argument(
+        "photometry_csv",
+        type=Path,
+        help="Path to an observed or synthetic photometry CSV",
+    )
     fit.add_argument("--model-phot-dir", type=Path, default=None)
     fit.add_argument("--model-spec-dir", type=Path, default=None)
     fit.add_argument("--norm-band", type=str, default=None)

@@ -13,7 +13,12 @@ from astroquery.vizier import Vizier
 from dust_extinction.parameter_averages import CCM89
 from gaiaxpy import PhotometricSystem, calibrate, generate
 
-from .constants import AB_MAG_BANDS, BAND_WAVELENGTH_INFO, GAIAXPY_TO_INTERNAL, VEGA_MAG_BANDS
+from .constants import (
+    AB_MAG_BANDS,
+    BAND_WAVELENGTH_INFO,
+    GAIAXPY_TO_INTERNAL,
+    VEGA_MAG_BANDS,
+)
 
 
 def get_dataframe(df_or_file: pd.DataFrame | str | Path) -> pd.DataFrame:
@@ -24,7 +29,11 @@ def get_dataframe(df_or_file: pd.DataFrame | str | Path) -> pd.DataFrame:
     return pd.read_csv(df_or_file)
 
 
-def build_observed_photometry_table(source_id: int | str, av: float, out_csv: str | Path | None = None) -> pd.DataFrame:
+def build_observed_photometry_table(
+    source_id: int | str,
+    av: float,
+    out_csv: str | Path | None = None,
+) -> pd.DataFrame:
     """Query observed photometry from Gaia, 2MASS, and AllWISE."""
 
     source_id = str(source_id)
@@ -49,7 +58,11 @@ def build_observed_photometry_table(source_id: int | str, av: float, out_csv: st
     row["DEC"] = dec
     for band in ("Gmag", "BPmag", "RPmag"):
         row[band] = float(source_row[band]) if band in source_row.colnames else np.nan
-        row[f"e_{band}"] = float(source_row[f"e_{band}"]) if f"e_{band}" in source_row.colnames else np.nan
+        row[f"e_{band}"] = (
+            float(source_row[f"e_{band}"])
+            if f"e_{band}" in source_row.colnames
+            else np.nan
+        )
 
     try:
         dist = vizier.query_constraints(catalog="I/352/gedr3dis", Source=source_id)
@@ -94,12 +107,20 @@ def _populate_wise(vizier: Vizier, coord: SkyCoord, row: dict[str, Any]) -> None
         source = wise[0][0]
         for band in ("W1mag", "W2mag", "W3mag", "W4mag"):
             row[band] = float(source[band]) if band in source.colnames else np.nan
-            row[f"e_{band}"] = float(source[f"e_{band}"]) if f"e_{band}" in source.colnames else np.nan
+            row[f"e_{band}"] = (
+                float(source[f"e_{band}"])
+                if f"e_{band}" in source.colnames
+                else np.nan
+            )
     except Exception:
         return
 
 
-def build_gaia_synthetic_table(xp_fits: str | Path, av: float, out_csv: str | Path | None = None) -> pd.DataFrame:
+def build_gaia_synthetic_table(
+    xp_fits: str | Path,
+    av: float,
+    out_csv: str | Path | None = None,
+) -> pd.DataFrame:
     """Generate synthetic photometry from a Gaia XP_CONTINUOUS FITS file."""
 
     phot_systems = [
@@ -156,20 +177,36 @@ def flux_wavel_dict(phot_input: pd.DataFrame | str | Path) -> dict[str, list[flo
         mag_dered = mag - a_lambda_over_av * av
 
         err_col = f"e_{band}"
-        mag_err = float(row[err_col]) if err_col in row.index and pd.notna(row[err_col]) else 0.1
+        mag_err = (
+            float(row[err_col])
+            if err_col in row.index and pd.notna(row[err_col])
+            else 0.1
+        )
         if mag_err > 90:
             mag_err = 0.0
 
         if band in VEGA_MAG_BANDS:
             flux_val = _mag_to_flux_lambda_f_lambda(mag_dered, zero_mag_flux_jy, wavelength_a)
-            flux_err_val = _mag_to_flux_lambda_f_lambda(mag_dered + mag_err, zero_mag_flux_jy, wavelength_a)
+            flux_err_val = _mag_to_flux_lambda_f_lambda(
+                mag_dered + mag_err,
+                zero_mag_flux_jy,
+                wavelength_a,
+            )
         elif band in AB_MAG_BANDS:
             flux_val = _mag_to_flux_lambda_f_lambda(mag_dered, 3631.0, wavelength_a)
-            flux_err_val = _mag_to_flux_lambda_f_lambda(mag_dered + mag_err, 3631.0, wavelength_a)
+            flux_err_val = _mag_to_flux_lambda_f_lambda(
+                mag_dered + mag_err,
+                3631.0,
+                wavelength_a,
+            )
         else:
             continue
 
-        final[band] = [float(wavelength_a), float(flux_val), float(abs(flux_val - flux_err_val))]
+        final[band] = [
+            float(wavelength_a),
+            float(flux_val),
+            float(abs(flux_val - flux_err_val)),
+        ]
 
     if not final:
         raise ValueError("No usable photometric bands found.")
@@ -190,5 +227,9 @@ def deredden_xp_spectrum(xp_sampled: pd.DataFrame | str | Path, a_v: float) -> p
     return pd.DataFrame({"wavelength": xp_wave_a, "flux": xp_flux_dered})
 
 
-def _mag_to_flux_lambda_f_lambda(magnitude: float, zero_point_jy: float, wavelength_a: float) -> float:
+def _mag_to_flux_lambda_f_lambda(
+    magnitude: float,
+    zero_point_jy: float,
+    wavelength_a: float,
+) -> float:
     return (2.99792458e-05 * (zero_point_jy * 10 ** (-magnitude / 2.5))) / (wavelength_a**2)

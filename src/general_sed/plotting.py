@@ -91,7 +91,10 @@ def plot_sed(
 
     model_label = f"BT-NextGen\nTeff = {eff_temp} K, log g = {sur_g}"
     if model_resolution is not None:
-        model_label = f"BT-NextGen smoothed\nTeff = {eff_temp} K, log g = {sur_g}, R = {model_resolution:.0f}"
+        model_label = (
+            "BT-NextGen smoothed\n"
+            f"Teff = {eff_temp} K, log g = {sur_g}, R = {model_resolution:.0f}"
+        )
 
     good_model = np.isfinite(model_wave) & np.isfinite(model_flux) & (model_flux > 0)
     plt.plot(
