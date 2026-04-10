@@ -1,6 +1,6 @@
-# general-sed
+# gaia-sed-toolkit
 
-`general-sed` packages the existing Gaia DR3 single-source SED workflow in this repository into a reusable Python library and CLI. It preserves the current scientific flow: Gaia XP download, observed photometry lookup, Gaia synthetic photometry generation, BT-NextGen model selection, scaling, and publication-style plotting.
+`gaia-sed-toolkit` packages the existing Gaia DR3 single-source SED workflow in this repository into a reusable Python library and CLI. It preserves the current scientific flow: Gaia XP download, observed photometry lookup, Gaia synthetic photometry generation, BT-NextGen model selection, scaling, and publication-style plotting.
 
 The repository is organized for both research use and open-source distribution. Library code lives in `src/general_sed`, legacy material is retained in `legacy/`, example assets are separated from generated outputs, and the package is installable with standard Python packaging tools.
 
@@ -84,18 +84,21 @@ Inspect available data paths:
 
 ```bash
 general-sed show-paths
+gaia-sed-toolkit show-paths
 ```
 
 Fit a local photometry file:
 
 ```bash
 general-sed fit-photometry data/examples/temp_sed_products/synthetic_5788625396770225152.csv
+gaia-sed-toolkit fit-photometry data/examples/temp_sed_products/synthetic_5788625396770225152.csv
 ```
 
 Run the full single-source pipeline:
 
 ```bash
 general-sed run-source 5788625396770225152 --av 0.0
+gaia-sed-toolkit run-source 5788625396770225152 --av 0.0
 ```
 
 ## Inputs and outputs

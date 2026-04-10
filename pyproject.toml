@@ -3,13 +3,13 @@ requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "general-sed"
+name = "gaia-sed-toolkit"
 version = "0.1.0"
 description = "Gaia DR3 spectral energy distribution tooling for photometry, model fitting, and plotting."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
-authors = [{ name = "general-sed contributors" }]
+authors = [{ name = "gaia-sed-toolkit contributors" }]
 keywords = ["astronomy", "gaia", "sed", "spectral-energy-distribution", "astrophysics"]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -47,6 +47,7 @@ docs = [
 
 [project.scripts]
 general-sed = "general_sed.cli:main"
+gaia-sed-toolkit = "general_sed.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

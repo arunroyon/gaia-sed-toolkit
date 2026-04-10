@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for contributing to `general-sed`.
+Thanks for contributing to `gaia-sed-toolkit`.
 
 ## Development workflow
 

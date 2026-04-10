@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Report a reproducible problem in general-sed
+about: Report a reproducible problem in gaia-sed-toolkit
 title: "[Bug] "
 labels: bug
 assignees: ""
@@ -18,6 +18,6 @@ assignees: ""
 
 - OS:
 - Python version:
-- general-sed version:
+- gaia-sed-toolkit version:
 
 ## Additional context

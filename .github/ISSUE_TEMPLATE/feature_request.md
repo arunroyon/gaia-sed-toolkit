@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an improvement for general-sed
+about: Suggest an improvement for gaia-sed-toolkit
 title: "[Feature] "
 labels: enhancement
 assignees: ""
