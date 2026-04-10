@@ -100,6 +100,14 @@ Run the full single-source pipeline:
 gaia-sed-toolkit run-source 5788625396770225152 --av 0.0
 ```
 
+## Example output
+
+Example SED output for Gaia DR3 source `5788625396770225152`, combining photometry, Gaia XP, and the matched BT-NextGen model.
+
+![Example SED output](docs/images/example_sed.png)
+
+[Original PDF output](outputs/fig/5788625396770225152_SED.pdf)
+
 ## Inputs and outputs
 
 ### Inputs
